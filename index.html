@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Digital Oxygen Hub Limited - One Page Website
+    Built with: HTML, CSS, and small vanilla JavaScript only.
+    File: index.html
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Digital Oxygen Hub Limited provides software development, AI automation, IT training, business digitalization, and technology consulting services." />
+  <title>Digital Oxygen Hub Limited | Technology, AI & Business Digitalization</title>
+  <link rel="icon" type="image/png" href="https://digitaloxygenltd.com/assets/img/logo/logo.png" />
+
+  <style>
+    /* =========================
+       GLOBAL RESET & VARIABLES
+    ========================== */
+    :root {
+      --primary: #ff6a00;
+      --primary-dark: #cc5400;
+      --secondary: #41409a;
+      --dark: #07111f;
+      --dark-soft: #0f1f33;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --white: #ffffff;
+      --light: #f8fafc;
+      --border: rgba(255, 255, 255, 0.12);
+      --card-bg: rgba(255, 255, 255, 0.07);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--dark);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    h1 {
+      /* Reduced from a very large landing-page headline to a more corporate, balanced size. */
+      font-size: clamp(2.05rem, 5vw, 4rem);
+      letter-spacing: -0.045em;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.045em;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .highlight {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #fb923c);
+      color: var(--white);
+      box-shadow: 0 14px 36px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 18px 46px rgba(249, 115, 22, 0.45);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 17, 31, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .brand-logo-wrap {
+      width: 86px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 12px 30px rgba(255, 106, 0, 0.25);
+      overflow: hidden;
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand span:last-child {
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      margin: 5px auto;
+      border-radius: 999px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 150px 0 90px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.32), transparent 30%),
+        radial-gradient(circle at 82% 32%, rgba(14, 165, 233, 0.22), transparent 34%),
+        linear-gradient(135deg, #07111f 0%, #0b1728 45%, #050814 100%);
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(10px);
+      opacity: 0.75;
+    }
+
+    .hero::before {
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: 160px;
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.22);
+    }
+
+    .hero::after {
+      width: 240px;
+      height: 240px;
+      left: -90px;
+      bottom: 90px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-content p {
+      max-width: 650px;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 38px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 680px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(18px);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--white);
+      font-size: 1.5rem;
+      margin-bottom: 2px;
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .dashboard-card {
+      position: relative;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      background: linear-gradient(160deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      overflow: hidden;
+    }
+
+    .dashboard-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at 25% 10%, rgba(249, 115, 22, 0.25), transparent 32%);
+      pointer-events: none;
+    }
+
+    .dashboard-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .window-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: var(--primary);
+      opacity: 0.9;
+    }
+
+    .window-dots span:nth-child(2) {
+      background: #facc15;
+    }
+
+    .window-dots span:nth-child(3) {
+      background: #22c55e;
+    }
+
+    .status-pill {
+      color: #fed7aa;
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      background: rgba(249, 115, 22, 0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+
+    .service-stack {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 46px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .service-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--primary);
+      font-size: 1.25rem;
+    }
+
+    .service-row strong {
+      color: var(--white);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .service-row small {
+      color: var(--muted);
+    }
+
+    .service-percent {
+      color: #bbf7d0;
+      font-weight: 900;
+      font-size: 0.88rem;
+    }
+
+    .floating-badge {
+      position: absolute;
+      right: -16px;
+      bottom: -28px;
+      width: min(270px, 82%);
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(249, 115, 22, 0.28);
+      background: rgba(15, 31, 51, 0.9);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(18px);
+    }
+
+    .floating-badge strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .floating-badge span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       ABOUT SECTION
+    ========================== */
+    .about {
+      background: #081525;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .about-image {
+      min-height: 500px;
+      border-radius: 34px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(rgba(7, 17, 31, 0.1), rgba(7, 17, 31, 0.5)),
+        url("https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(7, 17, 31, 0.84);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+
+    .about-image-card strong {
+      color: var(--white);
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .about-content p + p {
+      margin-top: 18px;
+    }
+
+    .about-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .about-point {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .about-point span {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background: rgba(249, 115, 22, 0.13);
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .about-point h3 {
+      font-size: 1rem;
+    }
+
+    .about-point p {
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       PRODUCTS & SERVICES
+    ========================== */
+    .services {
+      background:
+        radial-gradient(circle at top right, rgba(249, 115, 22, 0.14), transparent 34%),
+        #07111f;
+    }
+
+    .services-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 42px;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.88rem;
+      transition: 0.25s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .gallery-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(165deg, rgba(255,255,255,0.085), rgba(255,255,255,0.04));
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(249, 115, 22, 0.45);
+    }
+
+    .gallery-image {
+      height: 210px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .gallery-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 17, 31, 0.78), transparent 58%);
+    }
+
+    .gallery-tag {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1;
+      background: rgba(249, 115, 22, 0.9);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .gallery-content {
+      padding: 22px;
+    }
+
+    .gallery-content p {
+      font-size: 0.94rem;
+      margin-bottom: 18px;
+    }
+
+    .gallery-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .gallery-list li {
+      display: flex;
+      gap: 9px;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .gallery-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    /* =========================
+       CONTACT SECTION
+    ========================== */
+    .contact {
+      background: #081525;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .contact-info {
+      position: sticky;
+      top: 110px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .contact-list li {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .contact-list span {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--primary);
+      background: rgba(249, 115, 22, 0.12);
+      font-size: 1.25rem;
+    }
+
+    .contact-list strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .contact-list p {
+      font-size: 0.94rem;
+    }
+
+    .contact-form-card {
+      padding: 28px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: linear-gradient(165deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 14px 15px;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #748094;
+    }
+
+    select {
+      color-scheme: dark;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(249, 115, 22, 0.75);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
+      background: rgba(255, 255, 255, 0.095);
+    }
+
+    .form-note {
+      margin-top: 16px;
+      font-size: 0.88rem;
+    }
+
+    .form-alert {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(34, 197, 94, 0.13);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #bbf7d0;
+      font-weight: 800;
+    }
+
+    .form-alert.show {
+      display: block;
+    }
+
+    .form-error {
+      color: #fecaca;
+      font-size: 0.82rem;
+      min-height: 18px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+    .footer {
+      padding: 28px 0;
+      background: #050814;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* =========================
+       BACK TO TOP BUTTON
+    ========================== */
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--primary);
+      box-shadow: 0 14px 30px rgba(249, 115, 22, 0.3);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: 0.25s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================== */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-visual {
+        max-width: 620px;
+      }
+
+      .services-header-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-info {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 84px;
+        left: 4%;
+        right: 4%;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: rgba(7, 17, 31, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 14px 12px;
+        border-radius: 12px;
+      }
+
+      .nav-links li a:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .hero {
+        padding-top: 130px;
+      }
+
+      .hero-stats,
+      .about-points,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        min-height: 420px;
+      }
+
+      .floating-badge {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 16px;
+        width: 100%;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .brand span:last-child {
+        font-size: 0.82rem;
+      }
+
+      .brand-logo-wrap {
+        width: 72px;
+        height: 50px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .service-row {
+        grid-template-columns: 42px 1fr;
+      }
+
+      .service-percent {
+        grid-column: 2;
+      }
+
+      .contact-form-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- =========================
+       HEADER / NAVIGATION
+  ========================== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#home" class="brand" aria-label="Digital Oxygen Hub Limited home">
+        <span class="brand-logo-wrap">
+          <!-- Company logo loaded directly from Digital Oxygen website. -->
+          <img class="brand-logo" src="https://digitaloxygenltd.com/assets/img/logo/logo.png" alt="Digital Oxygen Hub Limited logo" />
+        </span>
+        <span>Digital Oxygen<br />Hub Limited</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Products & Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Technology that powers growth</span>
+          <h1>We build digital systems that help businesses breathe, grow, and scale.</h1>
+          <p>
+            Digital Oxygen Hub Limited helps organizations use software, AI, automation,
+            IT training, and digital strategy to improve productivity, reduce manual work,
+            and compete confidently in a modern economy.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+            <a href="#services" class="btn btn-outline">Explore Our Services</a>
+          </div>
+
+          <div class="hero-stats" aria-label="Company highlights">
+            <div class="stat-card">
+              <strong>AI</strong>
+              <span>Automation & intelligent workflow support</span>
+            </div>
+            <div class="stat-card">
+              <strong>Web</strong>
+              <span>Custom platforms, portals, and business apps</span>
+            </div>
+            <div class="stat-card">
+              <strong>Training</strong>
+              <span>Practical digital skills for teams and leaders</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Digital Oxygen services dashboard illustration">
+          <div class="dashboard-card">
+            <div class="dashboard-top">
+              <div class="window-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="status-pill">Live Digital Growth</span>
+            </div>
+
+            <div class="service-stack">
+              <div class="service-row">
+                <span class="service-icon">⚙</span>
+                <div>
+                  <strong>Business Automation</strong>
+                  <small>Reduce repetitive tasks and improve speed.</small>
+                </div>
+                <span class="service-percent">+78%</span>
+              </div>
+
+              <div class="service-row">
+                <span class="service-icon">💻</span>
+                <div>
+                  <strong>Software Development</strong>
+                  <small>Secure, scalable, and business-focused systems.</small>
+                </div>
+                <span class="service-percent">+92%</span>
+              </div>
+
+              <div class="service-row">
+                <span class="service-icon">🤖</span>
+                <div>
+                  <strong>AI Solutions</strong>
+                  <small>Chatbots, assistants, and data-driven workflows.</small>
+                </div>
+                <span class="service-percent">+64%</span>
+              </div>
+
+              <div class="service-row">
+                <span class="service-icon">🎓</span>
+                <div>
+                  <strong>IT & AI Training</strong>
+                  <small>Empowering teams with practical digital skills.</small>
+                </div>
+                <span class="service-percent">+85%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-badge">
+            <strong>From idea to implementation</strong>
+            <span>We help you plan, build, launch, and improve technology solutions that match your business goals.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================== -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <div class="about-image-card">
+            <strong>Built for ambitious organizations</strong>
+            <p>We combine strategy, design, development, and training to help businesses adopt technology with confidence.</p>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="eyebrow">About Digital Oxygen</span>
+          <h2>We are a technology partner for business digital transformation.</h2>
+          <p>
+            Digital Oxygen Hub Limited is focused on helping businesses, institutions,
+            professionals, and growing teams use technology more effectively. Our work
+            covers software development, AI-powered productivity, business automation,
+            digital consulting, and practical IT training.
+          </p>
+          <p>
+            We believe technology should not confuse organizations. It should simplify
+            work, improve decisions, increase visibility, and create new opportunities
+            for revenue and growth.
+          </p>
+
+          <div class="about-points">
+            <div class="about-point">
+              <span>01</span>
+              <h3>Business-first approach</h3>
+              <p>We start from your goals, then recommend technology that solves real problems.</p>
+            </div>
+            <div class="about-point">
+              <span>02</span>
+              <h3>Modern implementation</h3>
+              <p>We design responsive, secure, scalable, and maintainable digital products.</p>
+            </div>
+            <div class="about-point">
+              <span>03</span>
+              <h3>AI-ready mindset</h3>
+              <p>We help teams adopt AI tools, chatbots, automation, and intelligent workflows.</p>
+            </div>
+            <div class="about-point">
+              <span>04</span>
+              <h3>Training & support</h3>
+              <p>We provide practical guidance so people can confidently use what we build.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         PRODUCTS & SERVICES GALLERY
+    ========================== -->
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="services-header-row">
+          <div class="section-header">
+            <span class="eyebrow">Products & Services</span>
+            <h2>Practical digital solutions for modern organizations.</h2>
+            <p>
+              Explore our core service areas and product categories designed to help
+              businesses improve operations, reach more customers, and work smarter.
+            </p>
+          </div>
+
+          <div class="filter-buttons" aria-label="Filter services">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="software">Software</button>
+            <button class="filter-btn" data-filter="ai">AI & Automation</button>
+            <button class="filter-btn" data-filter="training">Training</button>
+            <button class="filter-btn" data-filter="consulting">Consulting</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <article class="gallery-card" data-category="software">
+            <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1000&q=80');">
+              <span class="gallery-tag">Software</span>
+            </div>
+            <div class="gallery-content">
+              <h3>Custom Web Applications</h3>
+              <p>Business portals, dashboards, CRMs, learning systems, booking systems, and internal tools.</p>
+              <ul class="gallery-list">
+                <li>Responsive user interfaces</li>
+                <li>Secure admin dashboards</li>
+                <li>Database-driven workflows</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-category="software">
+            <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1000&q=80');">
+              <span class="gallery-tag">Products</span>
+            </div>
+            <div class="gallery-content">
+              <h3>Digital Business Platforms</h3>
+              <p>End-to-end platforms for education, e-commerce, recruitment, membership, and service delivery.</p>
+              <ul class="gallery-list">
+                <li>E-commerce systems</li>
+                <li>Learning management platforms</li>
+                <li>Membership and payment systems</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-category="ai">
+            <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80');">
+              <span class="gallery-tag">AI</span>
+            </div>
+            <div class="gallery-content">
+              <h3>AI Assistants & Chatbots</h3>
+              <p>Customer support bots, knowledge assistants, internal helpdesks, and workflow assistants.</p>
+              <ul class="gallery-list">
+                <li>Website chatbots</li>
+                <li>FAQ automation</li>
+                <li>AI support agents</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-category="ai">
+            <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80');">
+              <span class="gallery-tag">Automation</span>
+            </div>
+            <div class="gallery-content">
+              <h3>Workflow Automation</h3>
+              <p>Automate repetitive business processes, notifications, approvals, reporting, and follow-ups.</p>
+              <ul class="gallery-list">
+                <li>Lead capture automation</li>
+                <li>Process approval flows</li>
+                <li>Smart reporting systems</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-category="training">
+            <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80');">
+              <span class="gallery-tag">Training</span>
+            </div>
+            <div class="gallery-content">
+              <h3>IT & AI Training</h3>
+              <p>Practical training for business owners, executives, students, developers, and office teams.</p>
+              <ul class="gallery-list">
+                <li>AI productivity training</li>
+                <li>Web development classes</li>
+                <li>Digital office skills</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="gallery-card" data-category="consulting">
+            <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80');">
+              <span class="gallery-tag">Consulting</span>
+            </div>
+            <div class="gallery-content">
+              <h3>Digital Strategy Consulting</h3>
+              <p>Technology roadmaps, process reviews, digital transformation plans, and implementation support.</p>
+              <ul class="gallery-list">
+                <li>Technology advisory</li>
+                <li>Business digitalization</li>
+                <li>Product planning</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CONTACT REQUEST FORM
+    ========================== -->
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <span class="eyebrow">Contact Request</span>
+          <h2>Tell us what you want to build, improve, or automate.</h2>
+          <p>
+            Fill out the request form and our team will review your inquiry. Whether
+            you need a website, software platform, AI solution, training, or consulting,
+            we can help you define the right next step.
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <span>📍</span>
+              <div>
+                <strong>Location</strong>
+                <p>Nigeria, serving clients locally and internationally.</p>
+              </div>
+            </li>
+            <li>
+              <span>✉</span>
+              <div>
+                <strong>Email</strong>
+                <p>info@digitaloxygen.com</p>
+              </div>
+            </li>
+            <li>
+              <span>☎</span>
+              <div>
+                <strong>Response</strong>
+                <p>Send your request and we will guide you through the best solution path.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" />
+                <small class="form-error" data-error="name"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" />
+                <small class="form-error" data-error="email"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+                <small class="form-error" data-error="phone"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="reason">Reason for Inquiry</label>
+                <select id="reason" name="reason">
+                  <option value="">Select a reason</option>
+                  <option value="Website or software development">Website or Software Development</option>
+                  <option value="AI chatbot or automation">AI Chatbot or Automation</option>
+                  <option value="IT or AI training">IT or AI Training</option>
+                  <option value="Business digitalization consulting">Business Digitalization Consulting</option>
+                  <option value="Partnership or general inquiry">Partnership or General Inquiry</option>
+                </select>
+                <small class="form-error" data-error="reason"></small>
+              </div>
+
+              <div class="form-group full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Briefly tell us what you need..."></textarea>
+                <small class="form-error" data-error="message"></small>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit Request</button>
+            <p class="form-note">This demo form validates input in the browser. Connect it to your backend or email service to receive real submissions.</p>
+            <div class="form-alert" id="formAlert" role="alert">
+              Thank you. Your request has been prepared successfully. Our team will follow up with you.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Digital Oxygen Hub Limited. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    /* =========================
+       SMALL VANILLA JAVASCRIPT
+    ========================== */
+
+    // Set current year automatically in the footer.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile navigation toggle.
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close mobile menu after clicking a navigation link.
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // A
